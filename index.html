@@ -712,6 +712,67 @@
             margin: 6px 0;
         }
 
+        .makhraj-placeholder-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 12px;
+            background: rgba(15, 61, 62, 0.03);
+            border: 1.5px dashed var(--accent);
+            border-radius: 12px;
+            text-align: center;
+            gap: 6px;
+            width: 100%;
+            min-height: 140px;
+        }
+
+        .makhraj-placeholder-card .ph-icon {
+            font-size: 1.6rem;
+        }
+
+        .makhraj-placeholder-card .ph-seq {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+        }
+
+        .makhraj-placeholder-card .ph-file {
+            font-size: 0.85rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .makhraj-placeholder-card .ph-file code {
+            background: rgba(15, 61, 62, 0.08);
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.88rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .makhraj-placeholder-card .ph-path {
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .makhraj-placeholder-card .ph-badge {
+            margin-top: 4px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(200, 155, 60, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(200, 155, 60, 0.3);
+            letter-spacing: 0.04em;
+        }
+
         .sr-only {
             position: absolute;
             width: 1px;
@@ -1000,15 +1061,17 @@
 
                         <div class="media-block">
                             <div class="media-label"><span>🧩 Makhraj Illustration</span></div>
-                            <div class="media-box ${letter.image ? 'has-image' : ''}" aria-label="${letter.image ? 'Makhraj illustration for ' + letter.name : 'Placeholder for makhraj illustration for ' + letter.name}">
+                            <div class="media-box ${letter.image ? 'has-image' : ''}" aria-label="Makhraj illustration for ${letter.name}">
                                 ${letter.image ? `
-                                    <img src="${letter.image}" alt="Anatomical diagram of makhraj for ${letter.name}" class="letter-makhraj-img" onerror="this.parentElement.classList.remove('has-image'); this.style.display='none'; this.nextElementSibling.style.display='block'; this.nextElementSibling.nextElementSibling.style.display='block';" />
-                                    <button class="play-button" type="button" aria-label="Play video demo for ${letter.name}" style="display:none;">▶</button>
-                                    <div class="media-text" style="display:none;">Video demo for “${letter.name}” will be added here with mouth placement and phonetic motion.</div>
-                                ` : `
-                                    <button class="play-button" type="button" aria-label="Play video demo for ${letter.name}">▶</button>
-                                    <div class="media-text">Video demo for “${letter.name}” will be added here with mouth placement and phonetic motion.</div>
-                                `}
+                                    <img src="${letter.image}" alt="Anatomical diagram of makhraj for ${letter.name}" class="letter-makhraj-img" onerror="this.parentElement.classList.remove('has-image'); this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                ` : ''}
+                                <div class="makhraj-placeholder-card" style="${letter.image ? 'display:none;' : ''}">
+                                    <div class="ph-icon">🖼️</div>
+                                    <div class="ph-seq">Sequence #${index + 1} • ${letter.name} (${letter.arabic})</div>
+                                    <div class="ph-file">Expected File: <code>${letter.image ? letter.image.split('/').pop() : letter.name.toLowerCase() + '.png'}</code></div>
+                                    <div class="ph-path">Path: <code>/images/letters/${letter.image ? letter.image.split('/').pop() : letter.name.toLowerCase() + '.png'}</code></div>
+                                    <div class="ph-badge">Awaiting Image Upload</div>
+                                </div>
                             </div>
                         </div>
 
