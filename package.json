@@ -1,13 +1,10 @@
 {
   "name": "tajweed-makhraj-guide",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
+  "description": "Static guide to the Makharij (articulation points) of the Arabic letters.",
   "scripts": {
-    "dev": "node server.js",
-    "build": "echo 'No build step required'",
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.19.2"
+    "dev": "npx serve .",
+    "start": "npx serve ."
   }
 }
