@@ -10,15 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #f4f1ea;
-            --bg-strong: #e8e1d1;
+            --bg: #f9f7f4;
+            --bg-strong: #eee8df;
             --panel: rgba(255, 255, 255, 0.9);
             --panel-strong: #ffffff;
-            --primary: #0f3d3e;
-            --primary-dark: #0c2f30;
+            --primary: #1b5e6b;
+            --primary-dark: #12434d;
             --primary-soft: #dfeff0;
-            --accent: #c89b3c;
-            --accent-soft: #f7f0d6;
+            --accent: #c19a6b;
+            --accent-soft: #f5eadc;
             --success: #1d7a59;
             --success-soft: #dff7ef;
             --warning: #9b2c2c;
@@ -273,6 +273,43 @@
             cursor: zoom-in;
         }
 
+        .makhraj-image[hidden] {
+            display: none;
+        }
+
+        .diagram-fallback {
+            width: min(100%, 760px);
+            padding: 22px;
+            border: 1px solid rgba(27, 94, 107, 0.12);
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(27, 94, 107, 0.08), rgba(193, 154, 107, 0.14));
+            color: var(--primary);
+            font-family: 'Lora', serif;
+            font-size: 1.15rem;
+        }
+
+        .zone-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-top: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 800;
+        }
+
+        .zone-list span {
+            padding: 10px 6px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .zone-list small {
+            color: var(--text-soft);
+            font-size: 0.68rem;
+            font-weight: 600;
+        }
+
         .diagram-container:hover {
             transform: scale(1.01);
             box-shadow: 0 12px 32px rgba(0,0,0,0.15);
@@ -430,6 +467,22 @@
             box-shadow: 0 18px 45px rgba(29, 122, 89, 0.12);
         }
 
+        .letter-card.now-playing {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(27, 94, 107, 0.16), 0 20px 48px rgba(27, 94, 107, 0.2);
+        }
+
+        .letter-card.now-playing::before {
+            height: 6px;
+            background: var(--primary);
+            animation: playingBar 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes playingBar {
+            from { opacity: 0.55; }
+            to { opacity: 1; }
+        }
+
         .card-head {
             display: flex;
             align-items: center;
@@ -555,6 +608,177 @@
         .media-block {
             display: grid;
             gap: 10px;
+        }
+
+        .audio-player-panel {
+            display: grid;
+            gap: 16px;
+            margin: 28px auto 26px;
+            padding: 24px;
+            background: var(--panel);
+            border: 1px solid rgba(27, 94, 107, 0.14);
+            border-top: 5px solid var(--primary);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 104px;
+        }
+
+        .audio-player-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .audio-player-heading h2 {
+            color: var(--primary);
+            font-family: 'Lora', serif;
+            font-size: clamp(1.35rem, 3vw, 1.8rem);
+        }
+
+        .audio-player-heading p {
+            margin-top: 4px;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        .audio-source {
+            width: 100%;
+            accent-color: var(--primary);
+        }
+
+        .audio-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-control {
+            min-width: 42px;
+            min-height: 40px;
+            padding: 0.55rem 0.8rem;
+            border: 1px solid rgba(27, 94, 107, 0.18);
+            border-radius: 10px;
+            background: var(--panel-strong);
+            color: var(--primary);
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+        }
+
+        .audio-control:hover,
+        .audio-control:focus-visible {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(27, 94, 107, 0.2);
+        }
+
+        .audio-control.stop {
+            color: var(--warning);
+            border-color: rgba(155, 44, 44, 0.2);
+        }
+
+        .audio-control.stop:hover,
+        .audio-control.stop:focus-visible {
+            background: var(--warning);
+            color: #fff;
+        }
+
+        .control-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 40px;
+            padding: 0 10px;
+            border: 1px solid rgba(27, 94, 107, 0.12);
+            border-radius: 10px;
+            background: var(--panel-strong);
+            color: var(--text-soft);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .control-group select,
+        .control-group input {
+            accent-color: var(--primary);
+        }
+
+        .control-group select {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--text);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .volume-slider {
+            width: 110px;
+        }
+
+        .audio-status {
+            min-height: 22px;
+            color: var(--text-soft);
+            font-size: 0.86rem;
+        }
+
+        .audio-status.error {
+            color: var(--warning);
+            font-weight: 700;
+        }
+
+        .playback-info {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .playback-stat {
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: var(--primary-soft);
+            color: var(--text);
+            font-size: 0.82rem;
+        }
+
+        .playback-stat strong {
+            display: block;
+            margin-top: 3px;
+            color: var(--primary);
+            font-size: 0.98rem;
+        }
+
+        .segment-play {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 44px;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid rgba(27, 94, 107, 0.18);
+            border-radius: 10px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+        }
+
+        .segment-play:hover,
+        .segment-play:focus-visible {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(27, 94, 107, 0.2);
+        }
+
+        .segment-play.is-playing {
+            background: var(--accent);
+            color: #fff;
         }
 
         .media-label {
@@ -857,6 +1081,31 @@
                 padding: 16px;
             }
 
+            .audio-player-panel {
+                padding: 18px;
+            }
+
+            .audio-player-heading {
+                flex-direction: column;
+            }
+
+            .playback-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .audio-controls {
+                align-items: stretch;
+            }
+
+            .audio-control,
+            .control-group {
+                flex: 1 1 auto;
+            }
+
+            .volume-slider {
+                flex: 1;
+            }
+
             .letter-header {
                 align-items: flex-start;
             }
@@ -864,6 +1113,10 @@
             .example-item {
                 grid-template-columns: 1fr;
                 text-align: right;
+            }
+
+            .zone-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -898,13 +1151,13 @@
     <main class="container">
         <section class="hero" aria-labelledby="page-title">
             <div class="hero-badge">Quranic Pronunciation • Makhraj</div>
-            <h1 id="page-title">Learn the Articulation of All 28 Arabic Letters</h1>
+            <h1 id="page-title">Learn the Articulation of 28 Arabic Letters + Hamza</h1>
             <p>
                 Explore the correct makhraj points, pronunciation details, and authentic Quranic examples to strengthen your recitation with clarity and precision.
             </p>
 
             <div class="stats-bar" aria-label="Learning highlights">
-                <div class="stat-pill"><span class="color-dot dot-teal"></span>28 letters</div>
+                <div class="stat-pill"><span class="color-dot dot-teal"></span>28 letters + Hamza</div>
                 <div class="stat-pill"><span class="color-dot dot-gold"></span>Quranic examples</div>
                 <div class="stat-pill"><span class="color-dot dot-green"></span>Practical learning</div>
             </div>
@@ -913,11 +1166,64 @@
         <!-- Makhraj Diagram Integration -->
         <section class="makhraj-diagram-section" aria-labelledby="diagram-title">
             <div class="diagram-container">
-                <img src="/images/Makharij_Al_Huruf.jpeg" alt="Makharij al-Huruf - The Five Main Articulation Zones Diagram" class="makhraj-image" />
+                <img src="/images/Makharij_Al_Huruf.jpeg" alt="Makharij al-Huruf - The Five Main Articulation Zones Diagram" class="makhraj-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+                <div class="diagram-fallback" hidden aria-label="Five main articulation zones">
+                    <strong>Five Main Articulation Zones</strong>
+                    <div class="zone-list">
+                        <span>Al-Jawf<br><small>Empty space</small></span>
+                        <span>Al-Halq<br><small>Throat</small></span>
+                        <span>Al-Lisan<br><small>Tongue</small></span>
+                        <span>Ash-Shafatan<br><small>Two lips</small></span>
+                        <span>Al-Khayshum<br><small>Nasal passage</small></span>
+                    </div>
+                </div>
                 <p class="diagram-caption" id="diagram-title">
                     The Five Main Articulation Zones (Makharij al-Huruf) — Click or tap to understand where each letter originates
                 </p>
             </div>
+        </section>
+
+        <section class="audio-player-panel" aria-labelledby="audio-title">
+            <div class="audio-player-heading">
+                <div>
+                    <h2 id="audio-title">Letter Pronunciation Audio</h2>
+                    <p>Listen to the full sequence or play any precisely marked letter segment.</p>
+                </div>
+                <div class="mini-tag">29 marked segments</div>
+            </div>
+            <audio id="mainAudio" class="audio-source" preload="metadata" controls>
+                <source src="audio/mukharaj.mp3" type="audio/mpeg" />
+                Your browser does not support HTML audio.
+            </audio>
+            <div class="audio-controls" aria-label="Audio controls">
+                <button class="audio-control" id="playAudio" type="button" aria-label="Play audio">▶</button>
+                <button class="audio-control" id="pauseAudio" type="button" aria-label="Pause audio">⏸</button>
+                <button class="audio-control stop" id="stopAudio" type="button" aria-label="Stop and reset audio">⏹</button>
+                <button class="audio-control" id="rewindAudio" type="button" aria-label="Rewind two seconds">◄◄</button>
+                <button class="audio-control" id="forwardAudio" type="button" aria-label="Fast forward two seconds">►►</button>
+                <label class="control-group" for="speedControl">
+                    Speed
+                    <select id="speedControl" aria-label="Playback speed">
+                        <option value="0.5">0.5x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </label>
+                <label class="control-group" for="volumeControl">
+                    Volume <span id="volumeValue">100%</span>
+                    <input class="volume-slider" id="volumeControl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+                </label>
+            </div>
+            <div class="playback-info" aria-live="polite">
+                <div class="playback-stat">Now playing<strong id="currentLetterInfo">None</strong></div>
+                <div class="playback-stat">Current time<strong id="currentTimeInfo">00:00</strong></div>
+                <div class="playback-stat">Total duration<strong id="totalTimeInfo">00:00</strong></div>
+                <div class="playback-stat">Speed<strong id="speedInfo">1x</strong></div>
+            </div>
+            <div id="audioStatus" class="audio-status" role="status">Audio ready when you add <code>audio/mukharaj.mp3</code>.</div>
         </section>
 
         <nav class="alpha-nav" id="alphaNav" aria-label="Alphabet quick navigation"></nav>
@@ -957,18 +1263,183 @@
             { arabic: 'ل', name: 'Lam', makhraj: 'Alveoli with side airflow', description: 'The tongue tip reaches the alveoli while air flows around the sides, giving this letter a smooth lateral sound.', examples: [{ word: 'لَيْس', meaning: 'Laysa (Is not)' }, { word: 'إِلَٰه', meaning: 'Ilah (Deity)' }, { word: 'لَا', meaning: 'La (No)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/lam.png' },
             { arabic: 'م', name: 'Meem', makhraj: 'Both lips', description: 'Both lips close and the sound is released through the nose, creating a clear nasal articulation.', examples: [{ word: 'مُحَمَّد', meaning: 'Muhammad (The Praised)' }, { word: 'مِن', meaning: 'Min (From)' }, { word: 'أَمِين', meaning: 'Amin (Trustworthy)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/meem.png' },
             { arabic: 'ن', name: 'Noon', makhraj: 'Alveoli with nasal resonance', description: 'The tongue tip rests on the alveoli while the sound flows through the nose, giving a resonant nasal tone.', examples: [{ word: 'نِعْمَة', meaning: 'Neemah (Blessing)' }, { word: 'نُور', meaning: 'Nur (Light)' }, { word: 'سُبْحَانَ', meaning: 'Subhan (Glorified)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/noon.png' },
-            { arabic: 'ه', name: 'Ha', makhraj: 'Upper throat', description: 'The sound is produced in the upper throat, producing a light, breathy articulation often heard in Quranic recitation.', examples: [{ word: 'هُوَ', meaning: 'Huwa (He)' }, { word: 'هَدَى', meaning: 'Hada (Guided)' }, { word: 'مَاهِيَّة', meaning: 'Mahiyyah (Essence)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/ha_upper.png' },
+             { arabic: 'ه', name: 'Ha', makhraj: 'Upper throat', description: 'The sound is produced in the upper throat, producing a light, breathy articulation often heard in Quranic recitation.', examples: [{ word: 'هُوَ', meaning: 'Huwa (He)' }, { word: 'هَدَى', meaning: 'Hada (Guided)' }, { word: 'مَاهِيَّة', meaning: 'Mahiyyah (Essence)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/ha_upper.png' },
+             { arabic: 'ء', name: 'Hamza', makhraj: 'Deepest throat', description: 'A clear glottal stop produced from the deepest point of the throat, distinct from the open Alif sound.', examples: [{ word: 'أَحَد', meaning: 'Ahad (One)' }, { word: 'سَأَل', meaning: 'Sa’ala (Asked)' }, { word: 'يَقْرَأ', meaning: 'Yaqra (Reads)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Dammah (ُ)', 'Sukun (ْ)'] },
             { arabic: 'و', name: 'Waw', makhraj: 'Lips with rounding', description: 'The lips round and the sound is produced with a smooth, flowing quality similar to a semi-vowel.', examples: [{ word: 'وَاحِد', meaning: 'Wahid (One/Unique)' }, { word: 'وَعْد', meaning: 'Waad (Promise)' }, { word: 'عَدْل', meaning: 'Adl (Justice)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/waw.png' },
             { arabic: 'ي', name: 'Ya', makhraj: 'Hard palate', description: 'The middle of the tongue rises toward the hard palate, creating a fluid semi-vowel sound.', examples: [{ word: 'يَقِين', meaning: 'Yaqin (Certainty)' }, { word: 'يَوْم', meaning: 'Yawm (Day)' }, { word: 'نَبِي', meaning: 'Nabi (Prophet)' }], harakat: ['Zabar (َ)', 'Kasrah (ِ)', 'Sukun (ْ)', 'Tanween'], image: '/images/letters/ya.png' }
         ];
 
-        const alphabet = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ي'];
+         const audioSegments = [
+             { arabic: 'ا', name: 'Alif', start: 0, end: 1 },
+             { arabic: 'ب', name: 'Ba', start: 1, end: 2 },
+             { arabic: 'ت', name: 'Ta', start: 2, end: 3 },
+             { arabic: 'ث', name: 'Tha', start: 3, end: 4 },
+             { arabic: 'ج', name: 'Jeem', start: 4, end: 6 },
+             { arabic: 'ح', name: 'Ha', start: 6, end: 8 },
+             { arabic: 'خ', name: 'Kha', start: 8, end: 9 },
+             { arabic: 'د', name: 'Dal', start: 9, end: 10 },
+             { arabic: 'ذ', name: 'Dhal', start: 10, end: 12 },
+             { arabic: 'ر', name: 'Ra', start: 12, end: 14 },
+             { arabic: 'ز', name: 'Zay', start: 14, end: 16 },
+             { arabic: 'س', name: 'Seen', start: 16, end: 18 },
+             { arabic: 'ش', name: 'Sheen', start: 18, end: 20 },
+             { arabic: 'ص', name: 'Sad', start: 20, end: 22 },
+             { arabic: 'ض', name: 'Dad', start: 22, end: 24 },
+             { arabic: 'ط', name: 'Tah', start: 24, end: 25 },
+             { arabic: 'ظ', name: 'Za (Zha)', start: 25, end: 26 },
+             { arabic: 'ع', name: 'Ayn', start: 26, end: 28 },
+             { arabic: 'غ', name: 'Ghain', start: 28, end: 30 },
+             { arabic: 'ف', name: 'Fa', start: 30, end: 32 },
+             { arabic: 'ق', name: 'Qaf', start: 32, end: 33 },
+             { arabic: 'ك', name: 'Kaf', start: 33, end: 35 },
+             { arabic: 'ل', name: 'Lam', start: 35, end: 36 },
+             { arabic: 'م', name: 'Meem', start: 36, end: 38 },
+             { arabic: 'ن', name: 'Noon', start: 38, end: 40 },
+             { arabic: 'ه', name: 'Ha', start: 40, end: 42 },
+             { arabic: 'ء', name: 'Hamza', start: 42, end: 43 },
+             { arabic: 'و', name: 'Waw', start: 43, end: 45 },
+             { arabic: 'ي', name: 'Ya', start: 45, end: 47 }
+         ];
+
+         const segmentByArabic = new Map(audioSegments.map((segment) => [segment.arabic, segment]));
+         letters.forEach((letter) => Object.assign(letter, segmentByArabic.get(letter.arabic) || {}));
+
+         const alphabet = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'ه', 'ء', 'و', 'ي'];
         const container = document.getElementById('lettersContainer');
         const searchInput = document.getElementById('searchInput');
         const alphaNav = document.getElementById('alphaNav');
         const themeToggle = document.getElementById('themeToggle');
+         const audio = document.getElementById('mainAudio');
+         const playAudioButton = document.getElementById('playAudio');
+         const pauseAudioButton = document.getElementById('pauseAudio');
+         const stopAudioButton = document.getElementById('stopAudio');
+         const rewindAudioButton = document.getElementById('rewindAudio');
+         const forwardAudioButton = document.getElementById('forwardAudio');
+         const speedControl = document.getElementById('speedControl');
+         const volumeControl = document.getElementById('volumeControl');
+         const volumeValue = document.getElementById('volumeValue');
+         const currentLetterInfo = document.getElementById('currentLetterInfo');
+         const currentTimeInfo = document.getElementById('currentTimeInfo');
+         const totalTimeInfo = document.getElementById('totalTimeInfo');
+         const speedInfo = document.getElementById('speedInfo');
+         const audioStatus = document.getElementById('audioStatus');
         const savedTheme = localStorage.getItem('tajweed-theme');
         const savedLearned = JSON.parse(localStorage.getItem('tajweed-learned') || '{}');
+         let activeSegment = null;
+         let isSegmentPlayback = false;
+
+         function formatTime(seconds, round = false) {
+             if (!Number.isFinite(seconds) || seconds < 0) return '00:00';
+             const totalSeconds = round ? Math.round(seconds) : Math.floor(seconds);
+             const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+             const remainder = (totalSeconds % 60).toString().padStart(2, '0');
+             return `${minutes}:${remainder}`;
+         }
+
+         function setAudioStatus(message, isError = false) {
+             audioStatus.textContent = message;
+             audioStatus.classList.toggle('error', isError);
+         }
+
+         function updatePlayingCards() {
+             document.querySelectorAll('.letter-card').forEach((card) => {
+                 const isPlaying = !!activeSegment && !audio.paused && card.dataset.letterKey === activeSegment.arabic;
+                 card.classList.toggle('now-playing', isPlaying);
+                 const button = card.querySelector('.segment-play');
+                 if (button) {
+                     button.classList.toggle('is-playing', isPlaying && !audio.paused);
+                     button.setAttribute('aria-label', `${isPlaying && !audio.paused ? 'Playing' : 'Play'} ${activeSegment ? activeSegment.name : ''} pronunciation`);
+                 }
+             });
+         }
+
+         function setActiveSegment(segment, segmentPlayback = false) {
+             activeSegment = segment;
+             isSegmentPlayback = !!segment && segmentPlayback;
+             if (segment) {
+                 currentLetterInfo.textContent = `${segment.arabic} ${segment.name}`;
+             } else {
+                 currentLetterInfo.textContent = 'None';
+             }
+             updatePlayingCards();
+         }
+
+         function updatePlaybackInfo() {
+             currentTimeInfo.textContent = formatTime(audio.currentTime);
+             totalTimeInfo.textContent = formatTime(audio.duration || 0, true);
+             speedInfo.textContent = `${audio.playbackRate}x`;
+             volumeValue.textContent = `${Math.round(audio.volume * 100)}%`;
+             if (!isSegmentPlayback && !audio.paused) {
+                 const currentSegment = audioSegments.find((segment) => audio.currentTime >= segment.start && audio.currentTime < segment.end);
+                 if (currentSegment) setActiveSegment(currentSegment, false);
+             }
+             updatePlayingCards();
+         }
+
+         function playSegment(segment) {
+             if (audio.error) {
+                 setAudioStatus('Audio file not found. Add audio/mukharaj.mp3 to the project, then reload the page.', true);
+                 return;
+             }
+             setActiveSegment(segment, true);
+             audio.currentTime = segment.start;
+             setAudioStatus(`Playing ${segment.arabic} ${segment.name} (${segment.start}-${segment.end} sec).`);
+             audio.play().catch(() => {
+                 setAudioStatus('The audio could not start. Check that audio/mukharaj.mp3 exists and that playback is allowed.', true);
+             });
+         }
+
+         audio.addEventListener('loadedmetadata', updatePlaybackInfo);
+         audio.addEventListener('timeupdate', () => {
+             if (isSegmentPlayback && activeSegment && audio.currentTime >= activeSegment.end) {
+                 audio.pause();
+                 audio.currentTime = activeSegment.end;
+                 setAudioStatus(`${activeSegment.arabic} ${activeSegment.name} segment complete.`);
+                 setActiveSegment(null);
+             }
+             updatePlaybackInfo();
+         });
+         audio.addEventListener('play', updatePlaybackInfo);
+         audio.addEventListener('pause', updatePlaybackInfo);
+         audio.addEventListener('ended', () => {
+             setActiveSegment(null);
+             setAudioStatus('Audio finished.');
+             updatePlaybackInfo();
+         });
+         audio.addEventListener('error', () => {
+             setAudioStatus('Audio file not found. Add audio/mukharaj.mp3 to the project, then reload the page.', true);
+         });
+
+         playAudioButton.addEventListener('click', () => {
+             if (audio.currentTime >= (audio.duration || 47)) audio.currentTime = 0;
+             audio.play().catch(() => setAudioStatus('The audio could not start. Check that audio/mukharaj.mp3 exists.', true));
+         });
+         pauseAudioButton.addEventListener('click', () => audio.pause());
+         stopAudioButton.addEventListener('click', () => {
+             audio.pause();
+             audio.currentTime = 0;
+             setActiveSegment(null);
+             setAudioStatus('Audio stopped and reset to the beginning.');
+             updatePlaybackInfo();
+         });
+         rewindAudioButton.addEventListener('click', () => {
+             audio.currentTime = Math.max(0, audio.currentTime - 2);
+             if (isSegmentPlayback && activeSegment && audio.currentTime < activeSegment.start) setActiveSegment(null);
+             updatePlaybackInfo();
+         });
+         forwardAudioButton.addEventListener('click', () => {
+             audio.currentTime = Math.min(audio.duration || 47, audio.currentTime + 2);
+             if (isSegmentPlayback && activeSegment && audio.currentTime >= activeSegment.end) setActiveSegment(null);
+             updatePlaybackInfo();
+         });
+         speedControl.addEventListener('change', () => {
+             audio.playbackRate = Number(speedControl.value);
+             updatePlaybackInfo();
+         });
+         volumeControl.addEventListener('input', () => {
+             audio.volume = Number(volumeControl.value);
+             updatePlaybackInfo();
+         });
 
         function getVisibleLetters() {
             const query = searchInput.value.trim().toLowerCase();
@@ -1077,9 +1548,10 @@
 
                         <div class="media-block">
                             <div class="media-label"><span>🔊 Audio</span></div>
-                            <div class="media-box" aria-label="Placeholder for audio pronunciation for ${letter.name}">
-                                <button class="play-button" type="button" aria-label="Play pronunciation for ${letter.name}">▶</button>
-                                <div class="media-text">Audio pronunciation and recitation examples for “${letter.name}” will appear here.</div>
+                            <div class="media-box" aria-label="Audio pronunciation for ${letter.name}">
+                                <button class="segment-play" type="button" data-letter-key="${letter.arabic}" aria-label="Play ${letter.name} pronunciation">
+                                    ▶ <span>Play (${letter.start}-${letter.end} sec)</span>
+                                </button>
                             </div>
                         </div>
 
@@ -1116,6 +1588,13 @@
                     savedLearned[key] = !savedLearned[key];
                     localStorage.setItem('tajweed-learned', JSON.stringify(savedLearned));
                     renderLetters();
+                });
+            });
+
+            container.querySelectorAll('.segment-play').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const segment = segmentByArabic.get(button.dataset.letterKey);
+                    if (segment) playSegment(segment);
                 });
             });
         }
