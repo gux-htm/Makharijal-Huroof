@@ -1,1 +1,0 @@
-- [Imported binary assets](imported-binary-assets.md) — validate image/audio files after import because binary assets can arrive corrupted or missing even when paths look correct.

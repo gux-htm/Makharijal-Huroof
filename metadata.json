@@ -1,8 +1,0 @@
-{
-  "name": "Tajweed Makhraj Guide",
-  "description": "Interactive Tajweed learning guide for Arabic letter makhraj and pronunciation.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}

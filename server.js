@@ -67,6 +67,15 @@ app.get('/images/letters/:filename', (req, res, next) => {
   next();
 });
 
+// Compatibility route for the audio file expected by the page
+app.get('/audio/mukharaj.mp3', (req, res) => {
+  const audioFile = path.join(__dirname, 'Audio', 'Makharij.mp3');
+  if (fs.existsSync(audioFile)) {
+    return res.sendFile(audioFile);
+  }
+  return res.status(404).send('Audio file not found');
+});
+
 // Serve static files from root directory
 app.use(express.static(__dirname));
 
