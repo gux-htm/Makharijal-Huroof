@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive Tajweed learning guide for Arabic letter makhraj and pronunciation." />
+    <title>Tajweed & Makhraj | Tajweed Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../css/pages.css" />
+</head>
+<body>
+    <header class="topbar" aria-label="Main navigation">
+        <div class="topbar-inner">
+            <a href="/" class="brand" aria-label="Tajweed Learning Platform">Tajweed <span>Platform</span></a>
+            <div class="nav-tools">
+                <label class="search-box" aria-label="Search letters">
+                    <span class="sr-only">Search letters</span>
+                    <input id="searchInput" type="search" placeholder="Search by Arabic or English..." aria-label="Search by Arabic or English name" />
+                </label>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☀️</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span class="current">Tajweed & Makhraj</span>
+        </nav>
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <h1 id="page-title">Tajweed & Makhraj</h1>
+            <p>
+                Learn the articulation points (makhraj) of 28 Arabic letters plus Hamza. 
+                This is the foundation of correct Quranic recitation. Each letter has a specific 
+                point of articulation that gives it its unique sound and character.
+            </p>
+        </section>
+
+        <!-- Makhraj Diagram Integration -->
+        <section class="makhraj-diagram-section" aria-labelledby="diagram-title">
+            <div class="diagram-container">
+                <img src="../images/Makharij_Al_Huruf.jpeg" alt="Makharij al-Huruf - The Five Main Articulation Zones Diagram" class="makhraj-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+                <div class="diagram-fallback" hidden aria-label="Five main articulation zones">
+                    <strong>Five Main Articulation Zones</strong>
+                    <div class="zone-list">
+                        <span>Al-Jawf<br><small>Empty space</small></span>
+                        <span>Al-Halq<br><small>Throat</small></span>
+                        <span>Al-Lisan<br><small>Tongue</small></span>
+                        <span>Ash-Shafatan<br><small>Two lips</small></span>
+                        <span>Al-Khayshum<br><small>Nasal passage</small></span>
+                    </div>
+                </div>
+                <p class="diagram-caption" id="diagram-title">
+                    The Five Main Articulation Zones (Makharij al-Huruf) — Click or tap to understand where each letter originates
+                </p>
+            </div>
+        </section>
+
+        <!-- Audio Player Panel -->
+        <section class="audio-player-panel" aria-labelledby="audio-title">
+            <div class="audio-player-heading">
+                <div>
+                    <h2 id="audio-title">Letter Pronunciation Audio</h2>
+                    <p>Listen to the full sequence or play any precisely marked letter segment.</p>
+                </div>
+                <div class="mini-tag">29 marked segments</div>
+            </div>
+            <audio id="mainAudio" class="audio-source" preload="metadata" controls>
+                <source src="../Audio/Makharij.mp3" type="audio/mpeg" />
+                Your browser does not support HTML audio.
+            </audio>
+            <div class="audio-controls" aria-label="Audio controls">
+                <button class="audio-control" id="playAudio" type="button" aria-label="Play audio">▶</button>
+                <button class="audio-control" id="pauseAudio" type="button" aria-label="Pause audio">⏸</button>
+                <button class="audio-control stop" id="stopAudio" type="button" aria-label="Stop and reset audio">⏹</button>
+                <button class="audio-control" id="rewindAudio" type="button" aria-label="Rewind two seconds">◄◄</button>
+                <button class="audio-control" id="forwardAudio" type="button" aria-label="Fast forward two seconds">►►</button>
+                <label class="control-group" for="speedControl">
+                    Speed
+                    <select id="speedControl" aria-label="Playback speed">
+                        <option value="0.5">0.5x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </label>
+                <label class="control-group" for="volumeControl">
+                    Volume <span id="volumeValue">100%</span>
+                    <input class="volume-slider" id="volumeControl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+                </label>
+            </div>
+            <div class="playback-info" aria-live="polite">
+                <div class="playback-stat">Now playing<strong id="currentLetterInfo">None</strong></div>
+                <div class="playback-stat">Current time<strong id="currentTimeInfo">00:00</strong></div>
+                <div class="playback-stat">Total duration<strong id="totalTimeInfo">00:00</strong></div>
+                <div class="playback-stat">Speed<strong id="speedInfo">1x</strong></div>
+            </div>
+            <div id="audioStatus" class="audio-status" role="status">Audio ready when the pronunciation file is available.</div>
+        </section>
+
+        <!-- Quick Navigation -->
+        <nav class="alpha-nav" id="alphaNav" aria-label="Alphabet quick navigation"></nav>
+
+        <!-- Letters Grid -->
+        <section id="lettersContainer" class="letters-grid" aria-live="polite"></section>
+
+        <!-- Back to Home -->
+        <div style="text-align: center; margin-top: 3rem; margin-bottom: 2rem;">
+            <a href="/" class="back-link">← Back to Learning Paths</a>
+        </div>
+
+        <footer class="footer">
+            <p><strong>Tajweed Makhraj Learning Platform</strong></p>
+            <p>Designed for respectful, accurate Quranic recitation study and practice.</p>
+        </footer>
+    </main>
+
+    <script src="../script.js"></script>
+    <script src="../js/shared.js"></script>
+</body>
+</html>

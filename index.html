@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Interactive Tajweed learning guide for Arabic letter makhraj and pronunciation." />
-    <title>Tajweed Makhraj Guide</title>
+    <meta name="description" content="Comprehensive Tajweed and Quranic recitation learning platform covering makhraj, stopping rules, and practical exercises." />
+    <title>Tajweed Learning Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
     <header class="topbar" aria-label="Main navigation">
         <div class="topbar-inner">
-            <div class="brand" aria-label="Tajweed Makhraj Guide">Tajweed <span>Makhraj</span></div>
+            <a href="/" class="brand" aria-label="Tajweed Learning Platform">Tajweed <span>Platform</span></a>
             <div class="nav-tools">
-                <label class="search-box" aria-label="Search letters">
-                    <span class="sr-only">Search letters</span>
-                    <input id="searchInput" type="search" placeholder="Search by Arabic or English..." aria-label="Search by Arabic or English name" />
-                </label>
                 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☀️</button>
             </div>
         </div>
@@ -26,92 +23,123 @@
 
     <main class="container">
         <section class="hero" aria-labelledby="page-title">
-            <div class="hero-badge">Quranic Pronunciation • Makhraj</div>
-            <h1 id="page-title">Learn the Articulation of 28 Arabic Letters + Hamza</h1>
+            <div class="hero-badge">Quranic Recitation Excellence</div>
+            <h1 id="page-title">Master Tajweed & Quranic Pronunciation</h1>
             <p>
-                Explore the correct makhraj points, pronunciation details, and authentic Quranic examples to strengthen your recitation with clarity and precision.
+                A comprehensive learning platform covering letter articulation (makhraj), 
+                stopping rules (waqf), and practical exercises for authentic Quranic recitation.
             </p>
 
             <div class="stats-bar" aria-label="Learning highlights">
-                <div class="stat-pill"><span class="color-dot dot-teal"></span>28 letters + Hamza</div>
-                <div class="stat-pill"><span class="color-dot dot-gold"></span>Quranic examples</div>
-                <div class="stat-pill"><span class="color-dot dot-green"></span>Practical learning</div>
+                <div class="stat-pill"><span class="color-dot dot-teal"></span>28 Letters + Hamza</div>
+                <div class="stat-pill"><span class="color-dot dot-gold"></span>Waqf Rules</div>
+                <div class="stat-pill"><span class="color-dot dot-green"></span>Practical Exercises</div>
             </div>
         </section>
 
-        <!-- Makhraj Diagram Integration -->
-        <section class="makhraj-diagram-section" aria-labelledby="diagram-title">
-            <div class="diagram-container">
-                <img src="/images/Makharij_Al_Huruf.jpeg" alt="Makharij al-Huruf - The Five Main Articulation Zones Diagram" class="makhraj-image" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
-                <div class="diagram-fallback" hidden aria-label="Five main articulation zones">
-                    <strong>Five Main Articulation Zones</strong>
-                    <div class="zone-list">
-                        <span>Al-Jawf<br><small>Empty space</small></span>
-                        <span>Al-Halq<br><small>Throat</small></span>
-                        <span>Al-Lisan<br><small>Tongue</small></span>
-                        <span>Ash-Shafatan<br><small>Two lips</small></span>
-                        <span>Al-Khayshum<br><small>Nasal passage</small></span>
-                    </div>
+        <!-- Tiles Section -->
+        <section class="tiles-section" aria-labelledby="tiles-title">
+            <h2 id="tiles-title" class="tiles-title">Choose Your Learning Path</h2>
+            <div class="tiles-grid">
+                <!-- Tajweed & Makhraj Tile -->
+                <a href="/pages/tajweed-makhraj.html" class="tile tile-primary" aria-label="Learn Tajweed and Makhraj">
+                    <div class="tile-icon">🔤</div>
+                    <h3>Tajweed & Makhraj</h3>
+                    <p>Master the articulation points of 28 Arabic letters + Hamza with audio guidance and visual diagrams.</p>
+                    <span class="tile-cta">Learn Now →</span>
+                </a>
+
+                <!-- Stopping Rules Tile -->
+                <a href="/pages/stopping-rules.html" class="tile tile-secondary" aria-label="Learn Waqf stopping rules">
+                    <div class="tile-icon">⏹️</div>
+                    <h3>Stopping Rules (Waqf)</h3>
+                    <p>Understand where and how to stop in Quranic recitation with detailed rules and examples.</p>
+                    <span class="tile-cta">Explore →</span>
+                </a>
+
+                <!-- Exercises Tile -->
+                <a href="/pages/quranic-exercises.html" class="tile tile-accent" aria-label="Practice Quranic exercises">
+                    <div class="tile-icon">✍️</div>
+                    <h3>Practice Exercises</h3>
+                    <p>Interactive exercises to test and improve your understanding of Tajweed rules and applications.</p>
+                    <span class="tile-cta">Practice →</span>
+                </a>
+
+                <!-- Resources Tile -->
+                <a href="/pages/resources.html" class="tile tile-info" aria-label="Browse additional resources">
+                    <div class="tile-icon">📚</div>
+                    <h3>Additional Resources</h3>
+                    <p>Curated links, recommended books, audio references, and further learning materials.</p>
+                    <span class="tile-cta">Discover →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Overview -->
+        <section class="features-section" aria-labelledby="features-title">
+            <h2 id="features-title">Why This Platform?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Audio Guidance</h3>
+                    <p>Listen to proper pronunciation of each letter with professional Quranic recitation audio.</p>
                 </div>
-                <p class="diagram-caption" id="diagram-title">
-                    The Five Main Articulation Zones (Makharij al-Huruf) — Click or tap to understand where each letter originates
-                </p>
-            </div>
-        </section>
-
-        <section class="audio-player-panel" aria-labelledby="audio-title">
-            <div class="audio-player-heading">
-                <div>
-                    <h2 id="audio-title">Letter Pronunciation Audio</h2>
-                    <p>Listen to the full sequence or play any precisely marked letter segment.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Visual Learning</h3>
+                    <p>Articulation diagrams and images showing exactly where each letter is produced.</p>
                 </div>
-                <div class="mini-tag">29 marked segments</div>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Quranic Examples</h3>
+                    <p>Real Quranic verse examples for each letter with English translations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Structured Learning</h3>
+                    <p>Organized pathways from foundational concepts to advanced Tajweed principles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Interactive Content</h3>
+                    <p>Engage with dynamic exercises and quizzes to reinforce your learning.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark Mode</h3>
+                    <p>Comfortable learning experience with light and dark theme options.</p>
+                </div>
             </div>
-            <audio id="mainAudio" class="audio-source" preload="metadata" controls>
-                <source src="Audio/Makharij.mp3" type="audio/mpeg" />
-                Your browser does not support HTML audio.
-            </audio>
-            <div class="audio-controls" aria-label="Audio controls">
-                <button class="audio-control" id="playAudio" type="button" aria-label="Play audio">▶</button>
-                <button class="audio-control" id="pauseAudio" type="button" aria-label="Pause audio">⏸</button>
-                <button class="audio-control stop" id="stopAudio" type="button" aria-label="Stop and reset audio">⏹</button>
-                <button class="audio-control" id="rewindAudio" type="button" aria-label="Rewind two seconds">◄◄</button>
-                <button class="audio-control" id="forwardAudio" type="button" aria-label="Fast forward two seconds">►►</button>
-                <label class="control-group" for="speedControl">
-                    Speed
-                    <select id="speedControl" aria-label="Playback speed">
-                        <option value="0.5">0.5x</option>
-                        <option value="0.75">0.75x</option>
-                        <option value="1" selected>1x</option>
-                        <option value="1.25">1.25x</option>
-                        <option value="1.5">1.5x</option>
-                        <option value="2">2x</option>
-                    </select>
-                </label>
-                <label class="control-group" for="volumeControl">
-                    Volume <span id="volumeValue">100%</span>
-                    <input class="volume-slider" id="volumeControl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
-                </label>
-            </div>
-            <div class="playback-info" aria-live="polite">
-                <div class="playback-stat">Now playing<strong id="currentLetterInfo">None</strong></div>
-                <div class="playback-stat">Current time<strong id="currentTimeInfo">00:00</strong></div>
-                <div class="playback-stat">Total duration<strong id="totalTimeInfo">00:00</strong></div>
-                <div class="playback-stat">Speed<strong id="speedInfo">1x</strong></div>
-            </div>
-            <div id="audioStatus" class="audio-status" role="status">Audio ready when the pronunciation file is available.</div>
         </section>
 
-        <nav class="alpha-nav" id="alphaNav" aria-label="Alphabet quick navigation"></nav>
-
-        <section id="lettersContainer" class="letters-grid" aria-live="polite"></section>
+        <!-- Quick Start -->
+        <section class="quickstart-section" aria-labelledby="quickstart-title">
+            <h2 id="quickstart-title">Quick Start</h2>
+            <div class="quickstart-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Start with Makhraj</h3>
+                    <p>Begin by learning the articulation points of Arabic letters to build your foundation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Learn the Rules</h3>
+                    <p>Understand Tajweed principles including stopping rules, length, and character qualities.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Practice & Apply</h3>
+                    <p>Use exercises to apply what you've learned and test your understanding.</p>
+                </div>
+            </div>
+        </section>
 
         <footer class="footer">
-            <p><strong>Tajweed Makhraj Learning Platform</strong></p>
+            <p><strong>Tajweed Learning Platform</strong></p>
             <p>Designed for respectful, accurate Quranic recitation study and practice.</p>
         </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script src="js/shared.js"></script>
 </body>
 </html>
